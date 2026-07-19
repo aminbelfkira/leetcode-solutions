@@ -1,11 +1,11 @@
 # 125. Valid Palindrome
 # https://leetcode.com/problems/valid-palindrome/
-# Accepted: 2026-07-18T18:14:03.000Z
+# Accepted: 2026-07-19T01:33:58.000Z
 # Language: Python3
 # Collection: top-interview-150
-# Runtime: 7 ms · Beats 81.2%
-# Memory: 23.9 MB · Beats 5.25%
-# Submission: https://leetcode.com/submissions/detail/2072679845/
+# Runtime: 3 ms · Beats 99%
+# Memory: 23.8 MB · Beats 5.25%
+# Submission: https://leetcode.com/submissions/detail/2072873867/
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
