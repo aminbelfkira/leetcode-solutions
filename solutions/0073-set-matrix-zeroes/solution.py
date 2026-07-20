@@ -1,10 +1,10 @@
 # 73. Set Matrix Zeroes
 # https://leetcode.com/problems/set-matrix-zeroes/
-# Accepted: 2026-07-20T22:21:51.000Z
+# Accepted: 2026-07-20T22:23:08.000Z
 # Language: Python3
-# Runtime: 11 ms · Beats 25.97%
-# Memory: 20.7 MB · Beats 15.02%
-# Submission: https://leetcode.com/submissions/detail/2075115267/
+# Runtime: 7 ms · Beats 58.68%
+# Memory: 20.8 MB · Beats 15.02%
+# Submission: https://leetcode.com/submissions/detail/2075115675/
 
 class Solution:
     def setZeroes(self, matrix: List[List[int]]) -> None:
@@ -12,7 +12,8 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
 
-        m, n = len(matrix), len(matrix[0])
+        m = len(matrix)
+        n =len(matrix[0])
         i_zeros = set()
         j_zeros = set()
 
