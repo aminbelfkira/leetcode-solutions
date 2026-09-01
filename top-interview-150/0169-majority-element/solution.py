@@ -1,28 +1,23 @@
 # 169. Majority Element
 # https://leetcode.com/problems/majority-element/
-# Accepted: 2026-07-18T20:06:09.000Z
+# Accepted: 2026-09-01T18:06:56.000Z
 # Language: Python3
 # Collection: top-interview-150
-# Runtime: 7 ms · Beats 57.3%
-# Memory: 21.1 MB · Beats 49.39%
-# Submission: https://leetcode.com/submissions/detail/2072770273/
+# Runtime: 7 ms · Beats 57.71%
+# Memory: 21.1 MB · Beats 84.13%
+# Submission: https://leetcode.com/submissions/detail/2127606584/
 
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        
         majority = nums[0]
         compteur = 1
+        for i in range(1, len(nums)) : 
 
-        for i in range(1,len(nums)) : 
-
-            current = nums[i]
-            if current == majority : 
+            if majority == nums[i] : 
                 compteur +=1
             else : 
                 compteur -=1
-            
-            if compteur < 0 : 
-                compteur = -compteur
-                majority = current
-            
+            if compteur == 0 :
+                majority = nums[i]
+                compteur = 1
         return majority
