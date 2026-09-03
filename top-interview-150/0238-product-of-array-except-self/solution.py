@@ -1,27 +1,26 @@
 # 238. Product of Array Except Self
 # https://leetcode.com/problems/product-of-array-except-self/
-# Accepted: 2026-07-18T23:08:32.000Z
+# Accepted: 2026-09-03T10:49:07.000Z
 # Language: Python3
 # Collection: top-interview-150
-# Runtime: 19 ms · Beats 74.99%
-# Memory: 25.6 MB · Beats 55.09%
-# Submission: https://leetcode.com/submissions/detail/2072837237/
+# Runtime: 26 ms · Beats 42.72%
+# Memory: 25.4 MB · Beats 80.94%
+# Submission: https://leetcode.com/submissions/detail/2129516059/
 
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-
+        
+        prefix = 1
         n = len(nums)
-        answer = [1] * n
-
-        prefix =1
-
-        for i in range(n) : 
-            answer[i] = prefix
+        ans = [1] * n
+        for i in range(n) :
+            ans[i] = prefix
             prefix *= nums[i]
-        
+        print(ans)
+
         suffix = 1
-        for i in range(n-1, -1,-1) : 
-            answer[i] *= suffix
+        for i in range(n-1, -1, -1) : 
+            ans[i] *= suffix
             suffix *= nums[i]
-        
-        return answer
+
+        return ans 
