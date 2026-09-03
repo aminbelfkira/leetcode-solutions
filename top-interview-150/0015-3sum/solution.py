@@ -1,45 +1,41 @@
 # 15. 3Sum
 # https://leetcode.com/problems/3sum/
-# Accepted: 2026-07-19T01:45:08.000Z
+# Accepted: 2026-09-03T21:26:41.000Z
 # Language: Python3
 # Collection: top-interview-150
-# Runtime: 464 ms · Beats 95.56%
-# Memory: 22.4 MB · Beats 31.79%
-# Submission: https://leetcode.com/submissions/detail/2072876910/
+# Runtime: 422 ms · Beats 98.21%
+# Memory: 22.4 MB · Beats 32.12%
+# Submission: https://leetcode.com/submissions/detail/2130107211/
 
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
-        
         nums.sort()
-        results = []
         n = len(nums)
+        results = []
 
         for i in range(n-2) : 
-
-            if nums[i]>0 : 
-                break
-            
+            target = - nums[i]
+            left = i+1
+            right = n-1
             if i>0 and nums[i] == nums[i-1] : 
                 continue
+            if nums[i] > 0 :
+                break 
 
-            left, right = i+1, n-1
-            target = -nums[i]
-
-            while left < right: 
+            while left < right : 
                 current_sum = nums[left] + nums[right]
 
                 if current_sum == target :
                     results.append([nums[i], nums[left], nums[right]])
                     left +=1
                     right -=1
-                    while left < right and nums[left] == nums[left -1] : 
+                    while left < right and nums[left] == nums[left-1] : 
                         left +=1
                     while left < right and nums[right] == nums[right+1] : 
                         right -=1
-                
-                elif current_sum < target :
-                    left +=1
-                else : 
+                elif current_sum >target : 
                     right -=1
-        
+                else : 
+                    left +=1 
         return results
+
