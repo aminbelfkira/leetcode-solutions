@@ -1,11 +1,11 @@
 # 383. Ransom Note
 # https://leetcode.com/problems/ransom-note/
-# Accepted: 2026-09-04T13:45:52.000Z
+# Accepted: 2026-09-05T11:33:54.000Z
 # Language: Python3
 # Collection: top-interview-150
-# Runtime: 19 ms · Beats 63.85%
-# Memory: 19.6 MB · Beats 73.05%
-# Submission: https://leetcode.com/submissions/detail/2130751608/
+# Runtime: 17 ms · Beats 65.67%
+# Memory: 19.7 MB · Beats 34.22%
+# Submission: https://leetcode.com/submissions/detail/2131654399/
 
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
