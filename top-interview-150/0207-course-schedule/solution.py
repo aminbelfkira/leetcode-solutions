@@ -1,38 +1,40 @@
 # 207. Course Schedule
 # https://leetcode.com/problems/course-schedule/
-# Accepted: 2026-08-06T10:38:45.000Z
+# Accepted: 2026-09-12T22:26:56.000Z
 # Language: Python3
 # Collection: top-interview-150
-# Runtime: 3 ms · Beats 86.11%
-# Memory: 21.2 MB · Beats 25.16%
-# Submission: https://leetcode.com/submissions/detail/2096542001/
+# Runtime: 4 ms · Beats 64.17%
+# Memory: 20.5 MB · Beats 62.41%
+# Submission: https://leetcode.com/submissions/detail/2140037938/
 
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-     ### on va essayer de détecter un cycle
-
-        graph = {i : [] for i in range(numCourses)}
+        graph = defaultdict(list)
 
         for course, prereq in prerequisites : 
-            graph[course].append(prereq)
+            graph[prereq].append(course)
         
         state = [0] * numCourses
+        stack = []
 
-        def dfs(course) : 
-            if state[course] ==1 : 
-                return False
-            if state[course] ==2 : 
-                return True
-            
-            state[course] = 1
-            for prereq in graph[course] : 
-                if not dfs(prereq) : 
-                    return False
-            state[course] = 2
-            return True
-        
-        for course in range(numCourses) : 
-            if not dfs(course) : 
-                return False
-        
+        for start in range(numCourses) : 
+            if state[start] != 0 : 
+                continue
+            stack.append((start, iter(graph[start])))
+            state[start] = 1
+
+            while stack : 
+                node, neighbors = stack[-1]
+                advanced = False
+                for nxt in neighbors : 
+                    if state[nxt] ==1 :
+                        return False
+                    if state[nxt] == 0 :
+                        state[nxt] = 1
+                        stack.append((nxt, iter(graph[nxt])))
+                        advanced = True
+                        break
+                if not advanced : 
+                    state[node] = 2
+                    stack.pop()
         return True
