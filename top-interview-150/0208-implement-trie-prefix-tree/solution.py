@@ -1,42 +1,36 @@
 # 208. Implement Trie (Prefix Tree)
 # https://leetcode.com/problems/implement-trie-prefix-tree/
-# Accepted: 2026-09-13T15:29:29.000Z
+# Accepted: 2026-09-13T15:33:29.000Z
 # Language: Python3
 # Collection: top-interview-150
-# Runtime: 32 ms · Beats 72.39%
-# Memory: 34 MB · Beats 71.61%
-# Submission: https://leetcode.com/submissions/detail/2140743257/
-
-class TrieNode :
-    def __init__(self) : 
-        self.children = {}
-        self.is_word = False
+# Runtime: 33 ms · Beats 68.95%
+# Memory: 31.5 MB · Beats 93.28%
+# Submission: https://leetcode.com/submissions/detail/2140746677/
 
 class Trie:
 
     def __init__(self):
-        self.root = TrieNode()
-
+        self.root = {}
 
     def insert(self, word: str) -> None:
-        node = self.root
-        for char in word : 
-            if char not in node.children : 
-                node.children[char] = TrieNode()
-            node = node.children[char]
-        node.is_word = True
-    
-    def _find(self, text) :
         node = self.root 
-        for char in text : 
-            node = node.children.get(char)
-            if node is None :
+        for char in word : 
+            node = node.setdefault(char, {})
+        node["#"] = True
+    
+    def _find(self, text : str) : 
+        node = self.root
+        for char in text :
+            if char not in node :
                 return None
+            node = node[char]
         return node
         
+
     def search(self, word: str) -> bool:
         node = self._find(word)
-        return node is not None and node.is_word
+        return node is not None and "#" in node
+        
 
     def startsWith(self, prefix: str) -> bool:
         return self._find(prefix) is not None
