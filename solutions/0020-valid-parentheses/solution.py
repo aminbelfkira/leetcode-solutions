@@ -1,20 +1,24 @@
 # 20. Valid Parentheses
 # https://leetcode.com/problems/valid-parentheses/
-# Accepted: 2026-09-11T22:26:01.000Z
+# Accepted: 2026-09-13T21:38:32.000Z
 # Language: Python3
-# Runtime: 3 ms · Beats 32.25%
-# Memory: 19.2 MB · Beats 90.99%
-# Submission: https://leetcode.com/submissions/detail/2138997589/
+# Runtime: 3 ms · Beats 32.4%
+# Memory: 19.4 MB · Beats 5.25%
+# Submission: https://leetcode.com/submissions/detail/2141030859/
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        stack = []
-        closings = {']' : '[', '}' : '{', ')' : '('}
+        
+        brackets = {']': '[', ')' : '(', '}' : '{'}
 
-        for char in s : 
-            if char in closings : 
-                if len(stack) == 0 or stack.pop() != closings[char] :
+        stack = []
+
+        for token in s : 
+            if token in brackets : 
+                if not stack : 
                     return False
-            if char in closings.values() : 
-                stack.append(char)
+                if stack.pop() != brackets[token] : 
+                    return False
+            if token in brackets.values() : 
+                stack.append(token)
         return len(stack) == 0
