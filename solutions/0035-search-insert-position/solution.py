@@ -1,10 +1,10 @@
 # 35. Search Insert Position
 # https://leetcode.com/problems/search-insert-position/
-# Accepted: 2026-09-15T14:15:07.000Z
+# Accepted: 2026-09-15T14:15:44.000Z
 # Language: Python3
 # Runtime: 0 ms · Beats 100%
-# Memory: 20 MB · Beats 11.9%
-# Submission: https://leetcode.com/submissions/detail/2142672194/
+# Memory: 19.9 MB · Beats 44.23%
+# Submission: https://leetcode.com/submissions/detail/2142672822/
 
 class Solution:
     def searchInsert(self, nums: list[int], target: int) -> int:
@@ -17,4 +17,4 @@ class Solution:
                 left = mid +1
             else : 
                 right = mid
-        return left if left < len(nums) else right
+        return left
