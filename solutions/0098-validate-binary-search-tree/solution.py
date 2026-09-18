@@ -1,10 +1,10 @@
 # 98. Validate Binary Search Tree
 # https://leetcode.com/problems/validate-binary-search-tree/
-# Accepted: 2026-09-14T13:54:52.000Z
+# Accepted: 2026-09-18T14:15:00.000Z
 # Language: Python3
 # Runtime: 0 ms · Beats 100%
-# Memory: 21 MB · Beats 46.32%
-# Submission: https://leetcode.com/submissions/detail/2141618871/
+# Memory: 20.7 MB · Beats 95.4%
+# Submission: https://leetcode.com/submissions/detail/2145808036/
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -13,19 +13,19 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+    def isValidBST(self, root: TreeNode | None) -> bool:
+        prev = None
+        current = root 
         stack = []
-        node = root
-        previous = None
 
-        while node is not None or stack :
-            while node is not None : 
-                stack.append(node)
-                node = node.left
-            node = stack.pop()
-
-            if previous is not None and previous >= node.val :
+        while current is not None or stack :
+            while current is not None : 
+                stack.append(current)
+                current = current.left
+            current = stack.pop()
+            if prev is not None and prev.val >= current.val : 
                 return False
-            previous = node.val
-            node = node.right
+            prev = current
+            current = current.right
+        
         return True
