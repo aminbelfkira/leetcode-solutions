@@ -1,10 +1,10 @@
 # 112. Path Sum
 # https://leetcode.com/problems/path-sum/
-# Accepted: 2026-09-13T21:59:56.000Z
+# Accepted: 2026-09-21T11:33:28.000Z
 # Language: Python3
 # Runtime: 0 ms · Beats 100%
-# Memory: 20 MB · Beats 98.46%
-# Submission: https://leetcode.com/submissions/detail/2141038528/
+# Memory: 20.1 MB · Beats 89.68%
+# Submission: https://leetcode.com/submissions/detail/2148582948/
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -13,14 +13,14 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+    def hasPathSum(self, root: TreeNode | None, targetSum: int) -> bool:
         
         def aux(node, remaining) : 
-            if not node : 
+            if node is None :
                 return False
-            if not node.left and not node.right : 
-                if remaining == node.val :
-                    return True
-            return aux(node.left, remaining - node.val) or aux(node.right, remaining- node.val)
+            new_remaining = remaining - node.val
+            if node.left is None and node.right is None : 
+                return new_remaining == 0 
+            return aux(node.left, new_remaining) or aux(node.right, new_remaining)
         
         return aux(root, targetSum)
