@@ -1,22 +1,23 @@
 # 77. Combinations
 # https://leetcode.com/problems/combinations/
-# Accepted: 2026-09-14T20:46:18.000Z
+# Accepted: 2026-09-21T13:14:33.000Z
 # Language: Python3
-# Runtime: 182 ms · Beats 9.93%
-# Memory: 61.3 MB · Beats 85.44%
-# Submission: https://leetcode.com/submissions/detail/2141995583/
+# Runtime: 111 ms · Beats 46.05%
+# Memory: 61.2 MB · Beats 85.75%
+# Submission: https://leetcode.com/submissions/detail/2148659162/
 
 class Solution:
-    def combine(self, n: int, k: int) -> List[List[int]]:
-        path =[]
-        result = []
+    def combine(self, n: int, k: int) -> list[list[int]]:
+        current = []
+        res = []
 
-        def backtrack(start) : 
-            if len(path) == k :
-                result.append(path.copy())
-            for i in range(start, n+1) :
-                path.append(i)
-                backtrack(i+1)
-                path.pop()
-        backtrack(1)
-        return result
+        def aux(start) : 
+            if len(current) == k :
+                res.append(current.copy())
+                return
+            for i in range(start, n+1) : 
+                current.append(i)
+                aux(i+1)
+                current.pop()
+        aux(1)
+        return res
