@@ -1,10 +1,10 @@
 # 101. Symmetric Tree
 # https://leetcode.com/problems/symmetric-tree/
-# Accepted: 2026-09-11T20:59:50.000Z
+# Accepted: 2026-09-21T13:18:28.000Z
 # Language: Python3
 # Runtime: 0 ms · Beats 100%
-# Memory: 19.5 MB · Beats 18.98%
-# Submission: https://leetcode.com/submissions/detail/2138968732/
+# Memory: 19.4 MB · Beats 55.93%
+# Submission: https://leetcode.com/submissions/detail/2148662793/
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -13,18 +13,15 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        
-        def is_mirror(p,q) : 
-
-            if not p and not q :
+    def isSymmetric(self, root: TreeNode | None) -> bool:
+        def is_mirror(left, right) :
+            if left is None and right is None : 
                 return True
-            if not p and q : 
+            if left is not None and right is None : 
                 return False
-            if p and not q : 
+            if left is None and right is not None : 
                 return False
-            if p.val != q.val : 
+            if left.val != right.val : 
                 return False
-            return is_mirror(p.left, q.right) and is_mirror(p.right, q.left)
-
+            return is_mirror(left.left, right.right) and is_mirror(left.right, right.left)
         return is_mirror(root.left, root.right)
