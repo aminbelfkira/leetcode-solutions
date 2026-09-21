@@ -1,10 +1,10 @@
 # 117. Populating Next Right Pointers in Each Node II
 # https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/
-# Accepted: 2026-09-13T21:53:19.000Z
+# Accepted: 2026-09-21T13:05:40.000Z
 # Language: Python3
-# Runtime: 38 ms · Beats 99.04%
-# Memory: 20.4 MB · Beats 27.15%
-# Submission: https://leetcode.com/submissions/detail/2141036229/
+# Runtime: 47 ms · Beats 81.25%
+# Memory: 20.3 MB · Beats 90.45%
+# Submission: https://leetcode.com/submissions/detail/2148651158/
 
 """
 # Definition for a Node.
@@ -20,15 +20,21 @@ class Solution:
     def connect(self, root: 'Node') -> 'Node':
         
         from collections import deque
-        queue = deque([root])
+
+        queue = deque([root]) if root else []
 
         while queue : 
-            prev = None
-            for _ in range(len(queue)) : 
+            prev = None 
+            level = len(queue)
+            for _ in range(level) : 
                 current = queue.popleft()
-                if current : 
-                    current.next = prev
-                    prev = current
+                current.next = prev
+                prev = current
+                if current.right : 
                     queue.append(current.right)
+                if current.left :
                     queue.append(current.left)
+                current = current.next
+        
         return root
+                
