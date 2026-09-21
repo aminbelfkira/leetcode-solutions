@@ -1,10 +1,10 @@
 # 82. Remove Duplicates from Sorted List II
 # https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
-# Accepted: 2026-09-13T21:26:07.000Z
+# Accepted: 2026-09-21T12:56:50.000Z
 # Language: Python3
-# Runtime: 3 ms · Beats 27.91%
-# Memory: 19.4 MB · Beats 7.2%
-# Submission: https://leetcode.com/submissions/detail/2141026211/
+# Runtime: 3 ms · Beats 27.82%
+# Memory: 19.3 MB · Beats 74.35%
+# Submission: https://leetcode.com/submissions/detail/2148643599/
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -12,14 +12,15 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def deleteDuplicates(self, head: ListNode | None) -> ListNode | None:
+        
         dummy = ListNode(0, head)
         prev = dummy
-        current = head
-        while current : 
-            if current.next and current.next.val == current.val : 
-                value = current.val 
-                while current and current.val == value : 
+        current = dummy.next
+        while current is not None : 
+            if current.next and current.val == current.next.val : 
+                val = current.val
+                while current and current.val == val: 
                     current = current.next
                 prev.next = current
             else : 
