@@ -1,25 +1,26 @@
 # 39. Combination Sum
 # https://leetcode.com/problems/combination-sum/
-# Accepted: 2026-09-14T21:13:51.000Z
+# Accepted: 2026-09-21T13:21:29.000Z
 # Language: Python3
-# Runtime: 16 ms · Beats 13.11%
-# Memory: 19.6 MB · Beats 65.62%
-# Submission: https://leetcode.com/submissions/detail/2142007311/
+# Runtime: 15 ms · Beats 21.02%
+# Memory: 19.6 MB · Beats 35.33%
+# Submission: https://leetcode.com/submissions/detail/2148665602/
 
 class Solution:
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        path = []
-        result = []
+    def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
+        
+        current = []
+        res = []
 
-        def backtrack(start) : 
-            if sum(path) == target : 
-                result.append(path.copy())
+        def aux(index) :
+            if sum(current) == target : 
+                res.append(current.copy())
                 return
-            if sum(path) > target : 
+            if sum(current) > target : 
                 return
-            for i in range(start, len(candidates)) : 
-                path.append(candidates[i])
-                backtrack(i)
-                path.pop()
-        backtrack(0)
-        return result
+            for i in range(index, len(candidates)) : 
+                current.append(candidates[i])
+                aux(i)
+                current.pop()
+        aux(0)
+        return res
