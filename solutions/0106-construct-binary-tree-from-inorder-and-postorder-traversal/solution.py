@@ -1,10 +1,10 @@
 # 106. Construct Binary Tree from Inorder and Postorder Traversal
 # https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
-# Accepted: 2026-09-11T21:15:56.000Z
+# Accepted: 2026-09-22T06:26:22.000Z
 # Language: Python3
-# Runtime: 7 ms · Beats 44.17%
-# Memory: 20.9 MB · Beats 93.68%
-# Submission: https://leetcode.com/submissions/detail/2138974988/
+# Runtime: 3 ms · Beats 74.65%
+# Memory: 21 MB · Beats 89.12%
+# Submission: https://leetcode.com/submissions/detail/2149406335/
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -13,21 +13,19 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-        
-        inorder = {val : i for i, val in enumerate(inorder)}
-        n = len(inorder)
-        self.postorder_idx = n-1
+    def buildTree(self, inorder: list[int], postorder: list[int]) -> TreeNode | None:
+        inorder  = {val : i for i, val in enumerate(inorder)}
+        self.post_idx = len(inorder) -1
 
-        def aux(left, right) : 
-            if left > right :
+        def aux(left,right) : 
+            if right < left : 
                 return None
-            root_val = postorder[self.postorder_idx]
-            self.postorder_idx -=1
+            root_val = postorder[self.post_idx]
             root_idx = inorder[root_val]
+            self.post_idx -=1
             right_tree = aux(root_idx+1, right)
-            left_tree = aux(left, root_idx -1)
-
+            left_tree = aux(left, root_idx-1)
             return TreeNode(root_val, left_tree, right_tree)
+        return aux(0, len(inorder) -1)
+            
         
-        return aux(0, n-1)
