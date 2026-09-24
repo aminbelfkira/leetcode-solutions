@@ -1,28 +1,23 @@
 // 169. Majority Element
 // https://leetcode.com/problems/majority-element/
-// Accepted: 2026-09-24T22:49:33.000Z
+// Accepted: 2026-09-24T22:52:58.000Z
 // Language: C++
 // Collection: top-interview-150
 // Runtime: 0 ms · Beats 100%
-// Memory: 42.1 MB · Beats 7.09%
-// Submission: https://leetcode.com/submissions/detail/2152471370/
+// Memory: 41.9 MB · Beats 13.89%
+// Submission: https://leetcode.com/submissions/detail/2152472201/
 
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int counter = 1 ;
-        int majority = nums[0] ; 
-        for (int i = 1 ; i< nums.size(); i++){
-            if (nums[i] == majority){
-                counter +=1 ; 
-            } else {
-                counter -=1 ;
+        int candidate = 0 ;
+        int counter = 0 ; 
+        for (int num : nums) {
+            if (counter == 0 ){
+                candidate = num;
             }
-            if (counter < 0){
-                counter = 1;
-                majority = nums[i];
-            }
+            counter += (candidate == num) ? 1 : -1 ;
         }
-        return majority ; 
+        return candidate; 
     }
 };
