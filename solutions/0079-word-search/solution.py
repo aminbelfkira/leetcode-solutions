@@ -1,28 +1,32 @@
 # 79. Word Search
 # https://leetcode.com/problems/word-search/
-# Accepted: 2026-09-21T11:30:50.000Z
+# Accepted: 2026-09-30T23:05:22.000Z
 # Language: Python3
-# Runtime: 3239 ms · Beats 84.28%
-# Memory: 19.4 MB · Beats 59.89%
-# Submission: https://leetcode.com/submissions/detail/2148581183/
+# Runtime: 3602 ms · Beats 59.62%
+# Memory: 19.6 MB · Beats 29.31%
+# Submission: https://leetcode.com/submissions/detail/2158636791/
 
 class Solution:
-    def exist(self, board: list[list[str]], word: str) -> bool:
-        rows = len(board)
-        cols = len(board[0])
-        if len(word) > rows * cols : 
-            return False
-        def backtrack(r,c,index) : 
+    def exist(self, grid: list[list[str]], word: str) -> bool:
+        m= len(grid)
+        n = len(grid[0])
 
-            if not (0<=r<rows and 0<= c < cols) or board[r][c] != word[index] : 
-                return False
-            if index == len(word) - 1 : 
+        def aux(r,c, i) : 
+            if i == len(word) :
                 return True
-
-            char = board[r][c]
-            board[r][c] = "#"
-            found = backtrack(r+1, c, index +1) or backtrack(r-1, c, index +1) or backtrack(r, c-1, index+1) or backtrack(r,c+1, index +1)
-            board[r][c] = char
-            return found
-
-        return any(backtrack(r,c,0) for r in range(rows) for c in range(cols)) 
+            if not(0<=r<m and 0<=c<n) : 
+                return False
+            if grid[r][c] == word[i] :
+                temp = grid[r][c]
+                grid[r][c] = "#"
+                res = aux(r+1,c, i+1) or aux(r-1,c, i+1) or aux(r, c+1, i+1) or aux(r, c-1, i+1)
+                grid[r][c] = temp
+                return res
+            else  : 
+                return False
+        for i in range(m) : 
+            for j in range(n) : 
+                res = aux(i,j,0) 
+                if res :
+                    return True
+        return False
