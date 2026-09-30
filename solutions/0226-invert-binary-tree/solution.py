@@ -1,10 +1,10 @@
 # 226. Invert Binary Tree
 # https://leetcode.com/problems/invert-binary-tree/
-# Accepted: 2026-09-18T13:10:44.000Z
+# Accepted: 2026-09-30T21:36:27.000Z
 # Language: Python3
 # Runtime: 0 ms · Beats 100%
-# Memory: 19.4 MB · Beats 22.9%
-# Submission: https://leetcode.com/submissions/detail/2145754043/
+# Memory: 19.3 MB · Beats 62.59%
+# Submission: https://leetcode.com/submissions/detail/2158611393/
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -16,5 +16,4 @@ class Solution:
     def invertTree(self, root: TreeNode | None) -> TreeNode | None:
         if not root : 
             return root
-        
-        return TreeNode(root.val, self.invertTree(root.right), self.invertTree(root.left))
+        return TreeNode(root.val, self.invertTree(root.right),self.invertTree(root.left))
