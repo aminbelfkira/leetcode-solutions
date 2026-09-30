@@ -1,10 +1,10 @@
 # 61. Rotate List
 # https://leetcode.com/problems/rotate-list/
-# Accepted: 2026-09-11T20:53:02.000Z
+# Accepted: 2026-09-30T21:59:30.000Z
 # Language: Python3
 # Runtime: 0 ms · Beats 100%
-# Memory: 19.3 MB · Beats 40.54%
-# Submission: https://leetcode.com/submissions/detail/2138965994/
+# Memory: 19.2 MB · Beats 77.86%
+# Submission: https://leetcode.com/submissions/detail/2158618960/
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -12,26 +12,24 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    def rotateRight(self, head: ListNode | None, k: int) -> ListNode | None:
         
-        n = 0 
+        n = 0
+        if not head : 
+            return head
+        current = head 
         prev = None
-        current = head
         while current : 
+            n+=1
             prev = current
             current = current.next
-            n+=1
-        if n == 0 :
-            return head
-        k = k %n 
+
         prev.next = head
 
-        prev = None
         current = head
-        for _ in range(n-k) : 
+        prev = None
+        for _ in range(n - k%n) : 
             prev = current
             current = current.next
-        
-        new_head = current
         prev.next = None
-        return new_head
+        return current
