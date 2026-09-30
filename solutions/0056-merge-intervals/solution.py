@@ -1,22 +1,21 @@
 # 56. Merge Intervals
 # https://leetcode.com/problems/merge-intervals/
-# Accepted: 2026-09-11T17:00:45.000Z
+# Accepted: 2026-09-30T21:52:50.000Z
 # Language: Python3
-# Runtime: 0 ms · Beats 100%
-# Memory: 23.2 MB · Beats 28.96%
-# Submission: https://leetcode.com/submissions/detail/2138778829/
+# Runtime: 7 ms · Beats 73.75%
+# Memory: 23.4 MB · Beats 8.33%
+# Submission: https://leetcode.com/submissions/detail/2158616700/
 
 class Solution:
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+    def merge(self, intervals: list[list[int]]) -> list[list[int]]:
         intervals.sort(key = lambda x : x[0])
-        res = [intervals[0]]
+        new_res = [intervals[0]]
 
         for start, end in intervals[1:] : 
-            last_end = res[-1][1]
-
-            if start <= last_end :
-                res[-1][1] = max(last_end, end)
+            last_end = new_res[-1][1]
+            if start > last_end : 
+                new_res.append([start, end])
             else : 
-                res.append([start, end])
+                new_res[-1][1] = max(end, last_end)
         
-        return res 
+        return new_res
