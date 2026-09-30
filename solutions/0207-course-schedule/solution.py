@@ -1,29 +1,29 @@
 # 207. Course Schedule
 # https://leetcode.com/problems/course-schedule/
-# Accepted: 2026-09-21T07:52:15.000Z
+# Accepted: 2026-09-30T22:36:14.000Z
 # Language: Python3
-# Runtime: 3 ms · Beats 85.82%
-# Memory: 20.2 MB · Beats 93.4%
-# Submission: https://leetcode.com/submissions/detail/2148412526/
+# Runtime: 7 ms · Beats 44.2%
+# Memory: 20.5 MB · Beats 53.54%
+# Submission: https://leetcode.com/submissions/detail/2158629335/
 
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: list[list[int]]) -> bool:
-        from collections import defaultdict
+        inorder = [0] * numCourses
+        from collections import defaultdict, deque
         graph = defaultdict(list)
-        indegree = [0] * numCourses
         for course, prereq in prerequisites : 
             graph[prereq].append(course)
-            indegree[course] +=1
-        visited = 0
-        queue = deque(c for c in range(numCourses) if indegree[c] == 0 )
-
-        while queue : 
-            node = queue.popleft()
-            visited +=1
-            for neighbor in graph[node] : 
-                indegree[neighbor] -=1 
-                if indegree[neighbor] == 0 :
+            inorder[course] +=1
+        
+        queue = deque([i for i in range(numCourses) if inorder[i]== 0])
+        visited = set()
+        while queue :
+            current = queue.popleft()
+            visited.add(current)
+            for neighbor in graph[current] : 
+                inorder[neighbor] -= 1
+                if inorder[neighbor] == 0 : 
                     queue.append(neighbor)
-        return visited == numCourses
+        
+        return len(visited) == numCourses
 
-                    
