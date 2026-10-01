@@ -1,10 +1,10 @@
 # 230. Kth Smallest Element in a BST
 # https://leetcode.com/problems/kth-smallest-element-in-a-bst/
-# Accepted: 2026-09-18T14:00:47.000Z
+# Accepted: 2026-10-01T08:54:58.000Z
 # Language: Python3
 # Runtime: 0 ms · Beats 100%
-# Memory: 22.1 MB · Beats 87.98%
-# Submission: https://leetcode.com/submissions/detail/2145796144/
+# Memory: 22.1 MB · Beats 61.38%
+# Submission: https://leetcode.com/submissions/detail/2159024365/
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -14,17 +14,18 @@
 #         self.right = right
 class Solution:
     def kthSmallest(self, root: TreeNode | None, k: int) -> int:
-        h = 0
+        
+        h = 0 
+        current = root 
         stack = []
-        current = root
-
-        while current is not None or stack : 
+        while current or stack : 
             while current is not None : 
                 stack.append(current)
                 current = current.left
+
             current = stack.pop()
             h+=1
-            if k == h : 
+            if h==k : 
                 return current.val
             current = current.right
-         
+          
