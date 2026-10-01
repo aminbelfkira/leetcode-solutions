@@ -1,10 +1,10 @@
 # 114. Flatten Binary Tree to Linked List
 # https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
-# Accepted: 2026-09-18T12:54:07.000Z
+# Accepted: 2026-10-01T08:33:20.000Z
 # Language: Python3
-# Runtime: 0 ms · Beats 100%
-# Memory: 19.8 MB · Beats 5.24%
-# Submission: https://leetcode.com/submissions/detail/2145741381/
+# Runtime: 3 ms · Beats 10.49%
+# Memory: 19.6 MB · Beats 15.87%
+# Submission: https://leetcode.com/submissions/detail/2159006787/
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -17,14 +17,16 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
+        
         nodes = []
-        def preorder(node) :
+        def preorder(node) : 
             if not node : 
                 return
             nodes.append(node)
             preorder(node.left)
             preorder(node.right)
         preorder(root)
+
         for i in range(len(nodes)-1) : 
             nodes[i].left = None
             nodes[i].right = nodes[i+1]
