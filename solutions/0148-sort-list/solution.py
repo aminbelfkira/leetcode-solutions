@@ -1,10 +1,10 @@
 # 148. Sort List
 # https://leetcode.com/problems/sort-list/
-# Accepted: 2026-09-21T11:38:16.000Z
+# Accepted: 2026-10-01T07:45:33.000Z
 # Language: Python3
-# Runtime: 173 ms · Beats 58.54%
-# Memory: 40.4 MB · Beats 99.46%
-# Submission: https://leetcode.com/submissions/detail/2148586158/
+# Runtime: 163 ms · Beats 74.75%
+# Memory: 40.5 MB · Beats 87.67%
+# Submission: https://leetcode.com/submissions/detail/2158973268/
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -13,6 +13,7 @@
 #         self.next = next
 class Solution:
     def sortList(self, head: ListNode | None) -> ListNode | None:
+        
         if head is None or head.next is None : 
             return head
         slow, fast = head, head.next
@@ -39,4 +40,3 @@ class Solution:
         tail.next = left if left is not None else right
         
         return dummy.next
-        
