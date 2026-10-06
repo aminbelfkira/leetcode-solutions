@@ -1,19 +1,17 @@
 # 274. H-Index
 # https://leetcode.com/problems/h-index/
-# Accepted: 2026-09-11T21:24:03.000Z
+# Accepted: 2026-10-06T14:09:26.000Z
 # Language: Python3
-# Runtime: 71 ms · Beats 6.64%
-# Memory: 19.3 MB · Beats 65.53%
-# Submission: https://leetcode.com/submissions/detail/2138978077/
+# Runtime: 0 ms · Beats 100%
+# Memory: 19.3 MB · Beats 92.01%
+# Submission: https://leetcode.com/submissions/detail/2164306953/
 
 class Solution:
-    def hIndex(self, citations: List[int]) -> int:
-        def aux(citations, k) : 
-            return len([c for c in citations if c >= k ]) >= k
-        
+    def hIndex(self, citations: list[int]) -> int:
+        citations.sort(reverse = True)
+        print(citations)
+
         h = 0 
-        n = len(citations)
-        while h<n and aux(citations, h+1) : 
+        while h< len(citations) and citations[h] > h : 
             h+=1
-        
         return h
