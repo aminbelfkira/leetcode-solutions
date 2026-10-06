@@ -1,25 +1,21 @@
 # 134. Gas Station
 # https://leetcode.com/problems/gas-station/
-# Accepted: 2026-07-21T23:08:00.000Z
+# Accepted: 2026-10-06T13:31:04.000Z
 # Language: Python3
-# Runtime: 31 ms · Beats 35.64%
-# Memory: 26 MB · Beats 66.44%
-# Submission: https://leetcode.com/submissions/detail/2076418776/
+# Runtime: 36 ms · Beats 21.47%
+# Memory: 25.9 MB · Beats 69%
+# Submission: https://leetcode.com/submissions/detail/2164267667/
 
 class Solution:
-    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        
+    def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:
         total = 0
         tank = 0
-        n = len(gas)
         start = 0
-
-        for i in range(n) : 
+        for i in range(len(gas)) : 
             diff = gas[i] - cost[i]
-            tank +=diff
-            total+=diff
-            if tank <0 :
+            total += diff
+            tank += diff
+            if tank <0 : 
+                tank = 0
                 start = i+1
-                tank =0
         return start if total >= 0 else -1
-
