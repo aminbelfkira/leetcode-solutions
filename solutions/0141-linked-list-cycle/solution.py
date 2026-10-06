@@ -1,10 +1,10 @@
 # 141. Linked List Cycle
 # https://leetcode.com/problems/linked-list-cycle/
-# Accepted: 2026-09-21T11:41:21.000Z
+# Accepted: 2026-10-06T11:51:39.000Z
 # Language: Python3
-# Runtime: 28 ms · Beats 99.99%
-# Memory: 22.5 MB · Beats 55.23%
-# Submission: https://leetcode.com/submissions/detail/2148588227/
+# Runtime: 59 ms · Beats 23.66%
+# Memory: 22.7 MB · Beats 28.78%
+# Submission: https://leetcode.com/submissions/detail/2164185443/
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -15,8 +15,10 @@
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         
+        dummy = ListNode(0, head)
+
         slow = head
-        fast = head 
+        fast = head
         while fast is not None and fast.next is not None : 
             slow = slow.next
             fast = fast.next.next
