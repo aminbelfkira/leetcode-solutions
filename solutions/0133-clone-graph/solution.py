@@ -1,10 +1,10 @@
 # 133. Clone Graph
 # https://leetcode.com/problems/clone-graph/
-# Accepted: 2026-09-30T22:16:20.000Z
+# Accepted: 2026-10-07T07:12:40.000Z
 # Language: Python3
-# Runtime: 49 ms · Beats 59.81%
-# Memory: 19.8 MB · Beats 19.47%
-# Submission: https://leetcode.com/submissions/detail/2158623917/
+# Runtime: 44 ms · Beats 87.3%
+# Memory: 19.8 MB · Beats 56.33%
+# Submission: https://leetcode.com/submissions/detail/2165032002/
 
 """
 # Definition for a Node.
@@ -17,17 +17,20 @@ class Node:
 from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if node is None : 
-            return None
-        clones = {node : Node(node.val)}
-        from collections import deque
-        queue = deque([node])
+        if node is None :
+            return node
+        from collections import defaultdict, deque
+        clones = defaultdict(list)
+        
+        clones[node] = Node(node.val)
 
+        queue = deque([node])
         while queue : 
             current = queue.popleft()
             for neighbor in current.neighbors : 
-                if neighbor not in clones : 
+                if neighbor not in clones :
                     clones[neighbor] = Node(neighbor.val)
                     queue.append(neighbor)
                 clones[current].neighbors.append(clones[neighbor])
+        
         return clones[node]
